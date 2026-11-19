@@ -9,6 +9,11 @@ import type { Props } from '../pagination/PaginationLink.vue';
 import { linkMeta } from './Link.meta';
 import type { Meta, Story } from './types';
 
+// Args every framework passes to these stories: React drops `href` when `asChild` is set.
+type SharedArgs = Omit<Props, 'href'> & {
+  href?: string;
+};
+
 // Label rendered inside the link by the Default and Current stories in each framework.
 export const PAGINATION_LINK_LABEL = '5';
 export const meta = {
@@ -68,7 +73,7 @@ export const Default = {
       expect(link).not.toHaveAttribute('aria-current');
     });
   },
-} satisfies Story<Props>;
+} satisfies Story<SharedArgs>;
 export const Current = {
   args: {
     ...meta.args,
@@ -92,4 +97,4 @@ export const Current = {
       expect(link).toHaveAttribute('aria-current', 'page');
     });
   },
-} satisfies Story<Props>;
+} satisfies Story<SharedArgs>;
