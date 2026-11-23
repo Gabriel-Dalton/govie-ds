@@ -160,6 +160,13 @@ export const Default: Story = {
 export const WithActions: Story = {
   ...stories.WithActions,
   tags: ['skip-playwright'],
+  parameters: {
+    docs: {
+      description: {
+        story: `${stories.WithActions.parameters.docs.description.story}\n\nTo add an action, place it inside the \`gi-side-nav-group\`, \`gi-side-nav-item-button\` or \`gi-side-nav-item-link\` tag and mark it with \`ngProjectAs="[actions]"\`.`,
+      },
+    },
+  },
   render: (props) => ({
     props: {
       ...props,
