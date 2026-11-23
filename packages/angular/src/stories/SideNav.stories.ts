@@ -1,6 +1,6 @@
-import omit from 'lodash/omit';
 import type { Meta, StoryObj } from '@storybook/angular-vite';
 import * as stories from '@/atoms/storybook/SideNav.meta';
+import argTypes from '@/atoms/storybook/argTypes';
 import { GiBox } from '@/Box';
 import { MailIcon, MoreVerticalIcon } from '@/icons';
 import { GiIconButton } from '@/IconButton';
@@ -22,9 +22,9 @@ const meta: Meta<GiSideNav> = {
   title: 'Navigation/SideNav/SideNav',
   component: GiSideNav,
   argTypes: {
-    ...omit(stories.sideNavMeta.argTypes, ['className', 'styles']),
+    ...stories.sideNavMeta.argTypes,
     class: {
-      ...stories.sideNavMeta.argTypes.className,
+      ...argTypes.class,
       description: 'Additional CSS classes applied to the nav element.',
     },
     style: {
