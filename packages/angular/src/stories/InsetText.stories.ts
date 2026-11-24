@@ -2,11 +2,22 @@ import type { Meta, StoryObj } from '@storybook/angular-vite';
 import { expect } from 'storybook/test';
 import { GiInsetText, GiInsetTextDirective } from '@/InsetText';
 import { insetTextMeta, Default as insetTextDefault } from '@/atoms/storybook/InsetText.meta';
+import argTypes from '@/atoms/storybook/argTypes';
 
-const meta: Meta<GiInsetText> = {
+const meta: Meta<GiInsetText & { children: string }> = {
   ...insetTextMeta,
   title: 'Typography/InsetText',
   component: GiInsetText,
+  argTypes: {
+    ...insetTextMeta.argTypes,
+    // Projected content, not an input.
+    children: { table: { disable: true } },
+    class: argTypes.class,
+    style: {
+      ...argTypes.style,
+      table: { type: { summary: 'string | Record<string, string | number | null | undefined>' } },
+    },
+  },
 };
 
 export default meta;
@@ -16,6 +27,10 @@ export const Default: StoryObj<GiInsetText & { content: string }> = {
   args: {
     ...insetTextDefault.args,
     content: String(insetTextDefault.args?.children),
+  },
+  argTypes: {
+    // Projected content, not an input.
+    content: { table: { disable: true } },
   },
   render: (args) => ({
     props: args,
